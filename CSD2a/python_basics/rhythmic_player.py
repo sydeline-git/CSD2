@@ -22,3 +22,4 @@ for i in range(numPlaybackTimes):
     kick.play()
     time.sleep(playbackList[i]/BPM)
 
+print("Files played")
