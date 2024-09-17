@@ -48,17 +48,30 @@ while True:
         print("BPM set to 120")
     break
 
-#playing the sounds according to list
-for i in range(numPlaybackTimes):
-    if sound == 'kick': 
-        kick.play()
-    elif sound == 'snare':
-        snare.play()
-    elif sound == 'hihat':
-        hihat.play()
+#repeats
+while True:
+    try:
+        numRepeats = int(input("Please enter the amount of times to repeat the rhythm \n"))
+        print("The rhythm will repeat for", numRepeats, "amount of times")
+    except ValueError:
+        print("Please enter a valid integer")
+        continue
+    break
 
-    time.sleep(playbackList[i]/BPM)
-    print(playbackList[i], sound)            
+
+#playing the sounds according to list
+for repeats in range(numRepeats):
+    for i in range(numPlaybackTimes):
+        if sound == 'kick': 
+            kick.play()
+        elif sound == 'snare':
+            snare.play()
+        elif sound == 'hihat':
+            hihat.play()
+
+        time.sleep(playbackList[i]/BPM)
+        print(playbackList[i], sound)   
+    print("Repeat ", repeats + 1)         
 
 print("Files played")
 
