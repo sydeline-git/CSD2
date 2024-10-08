@@ -21,6 +21,7 @@ t_now = time.time()
 t_relative = t_now - time.time()
 
 while True:
+    t_now = 
 
 
 

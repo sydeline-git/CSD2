@@ -1,0 +1,1 @@
+The rhythmic player assignment.
