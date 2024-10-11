@@ -2,8 +2,10 @@ import pygame
 import time
 import random
 
+
 BPM = 120
 note_16th_duration = 60 / BPM / 4
+
 
 #initializing sound and player
 pygame.mixer.init()
@@ -36,19 +38,10 @@ hihat = {
     'durations': []
 }
 
-#get text
+
+
+#------ TEXT TO BINARY ------#
 text = input('Input your text please \n')
-
-
-#dictionary in list function
-def create_timestamp(ts, sample, name):
-    return {'ts': ts, 'sample': sample, 'name': name}
-
-
-#generate random 1 or 0
-def random_binary():
-    return int(random.random() >= 0.5)
-
 
 def text_to_binary():
     binary_list = [bit for char in text for bit in format(ord(char), '08b')]
@@ -69,13 +62,21 @@ def generate_text_sequence(instrument):
     print(instrument['instrumentname'], instrument['sequence'])
 
 
+
+#------ RANDOM BINARY ------#
+#generate random 1 or 0
+def random_binary():
+    return int(random.random() >= 0.5)
+
 #create random sequence
 def generate_binary_sequence(instrument, length):
     temp_sequence = [random_binary() for _ in range(length)]
     instrument['sequence'].extend(temp_sequence)
     print(instrument['instrumentname'], instrument['sequence'])
 
-# #creating sequences
+
+
+#------ CREATE SEQUENCES ------#
 generate_text_sequence(kick)
 generate_text_sequence(snare)
 generate_text_sequence(hihat)
@@ -84,12 +85,17 @@ generate_text_sequence(hihat)
 # generate_binary_sequence(hihat, sequence_length)
 
 
+
+#------ SEQUENCE TO TIMESTAMPS ------#
+#dictionary in list function
+def create_timestamp(ts, sample, name):
+    return {'ts': ts, 'sample': sample, 'name': name}
+
 #transforming binary sequence in to usable timestamps
 events = []
 def binary_to_timestamps(instrument, i):
     if instrument['sequence'][i] == 1:
         events.append(create_timestamp(i*note_16th_duration, instrument['instrument'], instrument['instrumentname']))
-
 
 #utilising function
 for i in range(sequence_length):
@@ -97,12 +103,14 @@ for i in range(sequence_length):
     binary_to_timestamps(snare, i)
     binary_to_timestamps(hihat, i)
 
-
 #handling event 
 def handle_note_event(event):
     print(event['name'])
     event['sample'].play()
 
+
+
+#------ PLAYBACK ------#
 events_temp = events
 
 #playback
