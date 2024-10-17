@@ -2,7 +2,8 @@ import pygame
 import time
 import random
 import math
-# from midiutil import MIDIFile
+import sys
+from midiutil import MIDIFile
 
 
 #initializing sound and player
@@ -25,7 +26,8 @@ kick = {
     'instrument': kick_sound,
     'channel': kick_channel,
     'sequence': [],
-    'durations': []
+    'durations': [],
+    'midi': 35
 }
 snare = {
     'timestamps': [], 
@@ -33,7 +35,8 @@ snare = {
     'instrument': snare_sound,
     'channel': snare_channel,
     'sequence': [],
-    'durations': []
+    'durations': [],
+    'midi': 38
 }
 hihat = {
     'timestamps': [], 
@@ -41,7 +44,8 @@ hihat = {
     'instrument': hihat_sound,
     'channel': hihat_channel,
     'sequence': [],
-    'durations': []
+    'durations': [],
+    'midi': 42
 }
 
 
@@ -109,75 +113,149 @@ def get_BPM():
 #performing the inputs        
 numerator, denominator = get_time_signature()
 slice_length = int(get_measures() * time_signature_to_16th_notes(numerator, denominator))
-text = get_text(slice_length)
 BPM = get_BPM()
 note_16th_duration = 60 / BPM / 4
 
-
-
-#------ TEXT TO BINARY ------#
-def text_to_binary():
-    binary_list = [bit for char in text for bit in format(ord(char), '08b')]
-    return list(map(int, binary_list))
-
-binary_list = text_to_binary()
-sequence_length = len(binary_list)//3
-
-def slicer(slice_length, list):
-    sliced_sequence = []
-
-    slice_start = random.randrange(len(list) - slice_length)
-
-    for _ in range(slice_length):
-        sliced_sequence.append(list.pop(slice_start))
-
-    return sliced_sequence
-
-#text to sequence
-def generate_text_sequence(instrument):
-    temp_sequence = []
+def run_program():
     
-    for _ in range(sequence_length):
-        if binary_list:
-            temp_sequence.append(binary_list.pop(0))
+    #------ TEXT TO BINARY ------#
+    text = get_text(slice_length)
 
-    sliced_sequence = slicer(slice_length, temp_sequence)
+    def text_to_binary():
+        binary_list = [bit for char in text for bit in format(ord(char), '08b')]
+        return list(map(int, binary_list))
 
-    instrument['sequence'].extend(sliced_sequence)
-    print(instrument['instrumentname'], instrument['sequence'])
+    binary_list = text_to_binary()
+    sequence_length = len(binary_list)//3
 
+    def slicer(slice_length, list):
+        sliced_sequence = []
 
+        slice_start = random.randrange(len(list) - slice_length)
 
-#------ CREATE SEQUENCES ------#
-generate_text_sequence(kick)
-generate_text_sequence(snare)
-generate_text_sequence(hihat)
+        for _ in range(slice_length):
+            sliced_sequence.append(list.pop(slice_start))
 
+        return sliced_sequence
 
+    #text to sequence
+    def generate_text_sequence(instrument):
+        instrument['sequence'] = []
 
-#------ SEQUENCE TO TIMESTAMPS ------#
-#dictionary in list function
-def create_timestamp(ts, sample, name, channel):
-    return {'ts': ts, 'sample': sample, 'name': name, 'channel': channel}
+        temp_sequence = []
+        
+        for _ in range(sequence_length):
+            if binary_list:
+                temp_sequence.append(binary_list.pop(0))
 
-#transforming binary sequence in to usable timestamps
-events = []
-def binary_to_timestamps(instrument, i):
-    if instrument['sequence'][i] == 1:
-        events.append(create_timestamp(i*note_16th_duration, instrument['instrument'], instrument['instrumentname'], instrument['channel']))
+        sliced_sequence = slicer(slice_length, temp_sequence)
 
-#utilising function
-for i in range(slice_length):
-    binary_to_timestamps(kick, i)
-    binary_to_timestamps(snare, i)
-    binary_to_timestamps(hihat, i)
-
-#handling event 
-def handle_note_event(event):
-    # print(f"Playing: {event['name']} at {event['ts']}")
-    event['channel'].play(event['sample'])
+        instrument['sequence'].extend(sliced_sequence)
+        print(instrument['instrumentname'], instrument['sequence'])
 
 
+
+    #------ CREATE SEQUENCES ------#
+    generate_text_sequence(kick)
+    generate_text_sequence(snare)
+    generate_text_sequence(hihat)
+
+
+
+    #------ SEQUENCE TO TIMESTAMPS ------#
+    #dictionary in list function
+    def create_timestamp(ts, sample, name, channel):
+        return {'ts': ts, 'sample': sample, 'name': name, 'channel': channel}
+
+    #transforming binary sequence in to usable timestamps
+    events = []
+    def binary_to_timestamps(instrument, i):
+        if instrument['sequence'][i] == 1:
+            events.append(create_timestamp(i*note_16th_duration, instrument['instrument'], instrument['instrumentname'], instrument['channel']))
+
+    #utilising function
+    for i in range(slice_length):
+        binary_to_timestamps(kick, i)
+        binary_to_timestamps(snare, i)
+        binary_to_timestamps(hihat, i)
+
+    #handling event 
+    def handle_note_event(event):
+        # print(f"Playing: {event['name']} at {event['ts']}")
+        event['channel'].play(event['sample'])
+
+
+
+
+    #------ MIDI SETUP ------#
+    track       = 0
+    channel     = 9  # aka channel 10 drums
+    moment      = 0
+    tempo       = BPM
+    duration    = note_16th_duration
+    velocity    = 100
+
+    beat = MIDIFile(1)
+    beat.addTrackName(track, moment, "Generated Beat")
+    beat.addTempo(track, moment, tempo)
+
+
+    #   creating midi file
+    def create_midi_file():
+        # writing data onto midi file
+        def add_onto_midifile(instrument):
+            moment = 0
+
+            for hits in instrument['sequence']:
+                if hits == 1:
+                    beat.addNote(track, channel, instrument['midi'], moment, duration, 127)
+                moment = moment + 0.25
+
+        # writing data onto
+        add_onto_midifile(kick)
+        add_onto_midifile(snare)
+        add_onto_midifile(hihat)
+
+        # actually create the file
+        print("Midi File Created")
+        with open("beat.mid", "wb") as output_file:
+            beat.writeFile(output_file)
+
+
+
+    #------ PLAYBACK ------#
+    events_temp = events
+    print("Press CTRL+C to interupt loop")
+
+    #playback
+    while True:
+        try:
+            events = events_temp[:]
+            time_start = time.time()
+
+            while events:
+                event = events[0]
+                time_now = time.time() - time_start
+
+                if time_now >= event['ts']:
+                    if events:
+                        handle_note_event(events.pop(0))
+                    else:
+                        break
+                time.sleep(0.001)
+            
+            time.sleep(note_16th_duration)
+        
+        except KeyboardInterrupt:
+            user_input = input("Do you want to save the MIDI file (y/n)? ") 
+            if user_input == 'y':
+                create_midi_file()
+                sys.exit()
+                break  # exit the program         
+            elif user_input == 'n':
+                run_program()
+
+run_program()
 
 # swing_ratio = 0.6
 
@@ -193,31 +271,6 @@ def handle_note_event(event):
             
 # events = swing(events, swing_ratio)
 
-
-
-
-#------ PLAYBACK ------#
-events_temp = events
-
-
-#playback
-while True:
-    events = events_temp[:]
-    time_start = time.time()
-
-    while events:
-        event = events[0]
-        time_now = time.time() - time_start
-
-        if time_now >= event['ts']:
-            if events:
-                handle_note_event(events.pop(0))
-            else:
-                break
-        time.sleep(0.001)
-    
-    time.sleep(note_16th_duration)
-    
 
 # generate_binary_sequence(kick, sequence_length)
 # generate_binary_sequence(snare, sequence_length)
