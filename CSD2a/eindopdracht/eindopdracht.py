@@ -1,11 +1,8 @@
 import pygame
 import time
 import random
-
-
-BPM = 120
-note_16th_duration = 60 / BPM / 4
-slice_length = 16
+import math
+# from midiutil import MIDIFile
 
 
 #initializing sound and player
@@ -48,10 +45,77 @@ hihat = {
 }
 
 
+#------ GETTING USER INPUTS ------#
+def time_signature_to_16th_notes(numerator, denominator):
+    slice_length = numerator * (16 / denominator)
+    return slice_length
+
+
+def get_time_signature():
+    time_signature = input('Please enter the time signature of your sequence in the following format "_/_". \n')
+    
+    try:
+        numerator, denominator = map(int, time_signature.split('/'))
+        return numerator, denominator
+    
+    except ValueError:
+        print('Input invalid! Please enter the time signature in the before mentioned format.')
+        return get_time_signature()
+
+
+def get_measures():
+    try:
+        measures = int(input('How many measures should the sequence consist of? \n'))
+
+    except ValueError:
+        print('Please enter a valid integer')
+        return get_measures()
+
+    return measures
+
+
+def get_text(slice_length):
+    text_minimum = math.ceil((slice_length / 8)*3) + 1
+    print('Input your text:')
+
+    while True:
+        text = input()
+        
+        if len(text) < text_minimum:
+            print('Input your text with a minimum of', text_minimum, 'charachters please.')
+        else:
+            return text
+        
+
+def get_BPM():
+    while True:
+        try:
+            BPM_input = input("What BPM would you like to play at? Press enter for standard of 120.\n")
+
+            if BPM_input == "": 
+                BPM = 120
+                print("Standard BPM of", BPM, "chosen.")
+            else:
+                BPM = int(BPM_input)
+                print("BPM of", BPM, "chosen.")    
+            break
+
+        except ValueError:
+            print("Enter a valid integer please.")
+            continue
+    return BPM
+    
+
+#performing the inputs        
+numerator, denominator = get_time_signature()
+slice_length = int(get_measures() * time_signature_to_16th_notes(numerator, denominator))
+text = get_text(slice_length)
+BPM = get_BPM()
+note_16th_duration = 60 / BPM / 4
+
+
 
 #------ TEXT TO BINARY ------#
-text = input('Input your text please \n')
-
 def text_to_binary():
     binary_list = [bit for char in text for bit in format(ord(char), '08b')]
     return list(map(int, binary_list))
@@ -112,6 +176,23 @@ for i in range(slice_length):
 def handle_note_event(event):
     # print(f"Playing: {event['name']} at {event['ts']}")
     event['channel'].play(event['sample'])
+
+
+
+# swing_ratio = 0.6
+
+# def swing(events, swing_ratio):
+#     swing_amount = (swing_ratio - 0.5) * note_16th_duration * 2
+
+#     for event in events:
+#         beat_index = int(event['ts'] / note_16th_duration) % slice_length  # Get the 16th note index (0 to 7)
+#         print(beat_index)
+#         if beat_index % 2 == 1:  # Apply swing only to offbeats (index 1, 3, 5, 7)
+#             event['ts'] += swing_amount  # Delay the offbeat by the swing amount
+#     return events
+            
+# events = swing(events, swing_ratio)
+
 
 
 
