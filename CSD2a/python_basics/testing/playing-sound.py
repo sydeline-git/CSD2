@@ -1,26 +1,82 @@
-import random
+#------ GETTING USER INPUTS ------#
+def time_signature_to_16th_notes(numerator, denominator):
+    slice_length = numerator * (16 / denominator)
+    return slice_length
 
-slice_length = 8
 
-list = [0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1]
+def get_time_signature():
+    time_signature = input('Please enter the time signature of your sequence in the following format "_/_". \n')
+    
+    try:
+        numerator, denominator = map(int, time_signature.split('/'))
+        return numerator, denominator
+    
+    except ValueError:
+        print('Input invalid! Please enter the time signature in the before mentioned format.')
+        return get_time_signature()
 
-slice_start = random.randrange(len(list) - slice_length)
 
-print(slice_start)
+def get_measures():
+    try:
+        measures = int(input('How many measures should the sequence consist of? \n'))
 
-new_list = []
+    except ValueError:
+        print('Please enter a valid integer')
+        return get_measures()
 
-def slicer(slice_length, list):
-    slice_start = random.randrange(len(list) - slice_length)
+    return measures
 
-    for _ in range(slice_length):
-        new_list.append(list.pop(slice_start))
+def get_text(slice_length):
+    text_minimum = int(slice_length / 8)
+    print('Input your text:')
+
+    while True:
+        text = input()
+        
+        if len(text) < text_minimum:
+            print('Input your text with a minimum of', text_minimum, 'charachters please.')
+        else:
+            return text
+            
+            
+def get_inputs():
+    numerator, denominator = get_time_signature()
+    slice_length = get_measures() * time_signature_to_16th_notes(numerator, denominator)
+    get_text(slice_length)
+
+    return slice_length
+
+slice_length = int(get_inputs())
+
+
+
+
+
+
+
+# import random
+
+# slice_length = 8
+
+# list = [0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1]
+
+# slice_start = random.randrange(len(list) - slice_length)
+
+# print(slice_start)
+
+# new_list = []
+
+# def slicer(slice_length, list):
+#     slice_start = random.randrange(len(list) - slice_length)
+
+#     for _ in range(slice_length):
+#         new_list.append(list.pop(slice_start))
 
     
  
-slicer(slice_length, list)
+# slicer(slice_length, list)
 
-print(new_list)
+# print(new_list)
 
 
 
