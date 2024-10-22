@@ -3,6 +3,7 @@ import time
 import random
 import math
 import sys
+import threading
 from midiutil import MIDIFile
 
 
@@ -10,10 +11,13 @@ from midiutil import MIDIFile
 pygame.mixer.init()
 pygame.mixer.set_num_channels(3)
 
+
+#setting up seperate channels so the audio can overlap
 kick_channel = pygame.mixer.Channel(0)
 snare_channel = pygame.mixer.Channel(1)
 hihat_channel = pygame.mixer.Channel(2)
 
+#defining sound file locations
 kick_sound = pygame.mixer.Sound("sounds/kick.wav")
 snare_sound = pygame.mixer.Sound("sounds/snare.wav")
 hihat_sound = pygame.mixer.Sound("sounds/hihat.wav")
@@ -50,8 +54,8 @@ hihat = {
 
 
 #------ GETTING USER INPUTS ------#
-def time_signature_to_16th_notes(numerator, denominator):
-    slice_length = numerator * (16 / denominator)
+def time_signature_to_16th_notes(numerator, denominator):    
+    slice_length = numerator * (16 / denominator) 
     return slice_length
 
 
@@ -59,7 +63,7 @@ def get_time_signature():
     time_signature = input('Please enter the time signature of your sequence in the following format "_/_". \n')
     
     try:
-        numerator, denominator = map(int, time_signature.split('/'))
+        numerator, denominator = map(int, time_signature.split('/')) 
         return numerator, denominator
     
     except ValueError:
@@ -79,7 +83,7 @@ def get_measures():
 
 
 def get_text(slice_length):
-    text_minimum = math.ceil((slice_length / 8)*3) + 1
+    text_minimum = math.ceil((slice_length / 8)*3) + 1      
     print('Input your text:')
 
     while True:
@@ -111,34 +115,37 @@ def get_BPM():
     
 
 #performing the inputs        
-numerator, denominator = get_time_signature()
+numerator, denominator = get_time_signature() 
 slice_length = int(get_measures() * time_signature_to_16th_notes(numerator, denominator))
 BPM = get_BPM()
 note_16th_duration = 60 / BPM / 4
 
+
+
 def run_program():
-    
     #------ TEXT TO BINARY ------#
     text = get_text(slice_length)
 
+    #convert the inputted text into its binary components (HELP FROM CHATGPT)
     def text_to_binary():
-        binary_list = [bit for char in text for bit in format(ord(char), '08b')]
-        return list(map(int, binary_list))
+        binary_list = [bit for char in text for bit in format(ord(char), '08b')]  #convert every character of text into binary of string '_' len(8)
+        return list(map(int, binary_list))                                        #turn strings into actual integers
 
     binary_list = text_to_binary()
-    sequence_length = len(binary_list)//3
+    sequence_length = len(binary_list)//3 
 
-    def slicer(slice_length, list):
+    #slice a portion of the full binary list according to the inputted values
+    def slicer(slice_length, list):         
         sliced_sequence = []
 
-        slice_start = random.randrange(len(list) - slice_length)
+        slice_start = random.randrange(len(list) - slice_length)    #slice list start position at random point
 
         for _ in range(slice_length):
             sliced_sequence.append(list.pop(slice_start))
 
         return sliced_sequence
 
-    #text to sequence
+    #binary list to sequence
     def generate_text_sequence(instrument):
         instrument['sequence'] = []
 
@@ -181,10 +188,7 @@ def run_program():
 
     #handling event 
     def handle_note_event(event):
-        # print(f"Playing: {event['name']} at {event['ts']}")
         event['channel'].play(event['sample'])
-
-
 
 
     #------ MIDI SETUP ------#
@@ -200,23 +204,23 @@ def run_program():
     beat.addTempo(track, moment, tempo)
 
 
-    #   creating midi file
+    #creating midi file
     def create_midi_file():
-        # writing data onto midi file
+        #writing data onto midi file
         def add_onto_midifile(instrument):
             moment = 0
 
             for hits in instrument['sequence']:
                 if hits == 1:
-                    beat.addNote(track, channel, instrument['midi'], moment, duration, 127)
-                moment = moment + 0.25
+                    beat.addNote(track, channel, instrument['midi'], moment, duration, velocity)
+                moment = moment + 0.25  #0.25 for sixteenth note
 
-        # writing data onto
+        #writing data onto
         add_onto_midifile(kick)
         add_onto_midifile(snare)
         add_onto_midifile(hihat)
 
-        # actually create the file
+        #actually create the file
         print("Midi File Created")
         with open("beat.mid", "wb") as output_file:
             beat.writeFile(output_file)
@@ -224,13 +228,13 @@ def run_program():
 
 
     #------ PLAYBACK ------#
-    events_temp = events
+    events_temp = events    
     print("Press CTRL+C to interupt loop")
 
     #playback
     while True:
         try:
-            events = events_temp[:]
+            events = events_temp[:] #copy of original list from start to finish
             time_start = time.time()
 
             while events:
@@ -251,7 +255,7 @@ def run_program():
             if user_input == 'y':
                 create_midi_file()
                 sys.exit()
-                break  # exit the program         
+                break      
             elif user_input == 'n':
                 run_program()
 
