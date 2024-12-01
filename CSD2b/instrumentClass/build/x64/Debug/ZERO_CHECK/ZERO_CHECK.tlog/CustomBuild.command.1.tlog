@@ -1,0 +1,10 @@
+^C:\USERS\STRAV\DOCUMENTS\CSD2\CSD2B\INSTRUMENTCLASS\BUILD\CMAKEFILES\5D24E18C11304D93F373BBBD396C8B20\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/strav/Documents/CSD2/CSD2b/instrumentClass -BC:/Users/strav/Documents/CSD2/CSD2b/instrumentClass/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/strav/Documents/CSD2/CSD2b/instrumentClass/build/CMakeTestProject.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

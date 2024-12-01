@@ -1,29 +1,6 @@
 #include <iostream>
 #include <string>
-
-class Instrument {
-public:
-    Instrument();
-
-    std::string sound = "Boink";
-
-    void play();
-    void roll(int times);
-};
-
-Instrument::Instrument() {
-    std::cout << "Instrument - Constructor\n";
-}
-
-void Instrument::play() {
-    std::cout << sound << std::endl;
-}
-
-void Instrument::roll(int times) {
-    for (int i = 0; i < times; i++) {
-        std::cout << sound << std::endl;
-    }
-}
+#include "instrument.h"
 
 int main(){
     Instrument aInstrument;
