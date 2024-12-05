@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\CMakeFiles\481ffdefc8f1f0f0b6c3f903c0103e36\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9E2E7050-50FD-3C5A-9B78-98BED052DCC2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
