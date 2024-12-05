@@ -22,11 +22,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EA63044D-C132-3635-9FF4-5FB34ECD1722}</ProjectGuid>
+    <ProjectGuid>{A9F2483D-183D-3F45-A143-D50553DA0B39}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
-    <ProjectName>speakerwithwoofer</ProjectName>
+    <ProjectName>speaker</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -60,26 +60,26 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">speakerwithwoofer.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">speakerwithwoofer</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">speaker.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">speaker</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">speakerwithwoofer.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">speakerwithwoofer</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">speaker.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">speaker</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\MinSizeRel\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">speakerwithwoofer.dir\MinSizeRel\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">speakerwithwoofer</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">speaker.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">speaker</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\RelWithDebInfo\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">speakerwithwoofer.dir\RelWithDebInfo\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">speakerwithwoofer</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">speaker.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">speaker</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
@@ -116,8 +116,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Debug/speakerwithwoofer.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Debug/speakerwithwoofer.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Debug/speaker.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Debug/speaker.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -156,8 +156,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Release/speakerwithwoofer.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Release/speakerwithwoofer.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Release/speaker.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/Release/speaker.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -196,8 +196,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/MinSizeRel/speakerwithwoofer.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/MinSizeRel/speakerwithwoofer.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/MinSizeRel/speaker.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/MinSizeRel/speaker.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -235,8 +235,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/RelWithDebInfo/speakerwithwoofer.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/RelWithDebInfo/speakerwithwoofer.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/RelWithDebInfo/speaker.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/strav/Documents/CSD2/CSD2b/workFolder/speaker/build/RelWithDebInfo/speaker.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -305,6 +305,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\speaker.cpp" />
     <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\tweeter.cpp" />
     <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\woofer.cpp" />
+    <ClInclude Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\tweeter.h" />
+    <ClInclude Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\woofer.h" />
+    <ClInclude Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\speaker.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\speaker\build\ZERO_CHECK.vcxproj">
