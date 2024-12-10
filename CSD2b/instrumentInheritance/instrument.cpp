@@ -14,5 +14,9 @@ Instrument::~Instrument() {
 
 
 void Instrument::play() {
-    std::cout << name << " makes the sound " << sound << "\n";
+    std::cout << "Is a "                << type 
+        << " instrument called "        << name 
+        << " which makes the sound "    << sound 
+        << " in midi pitch range "      << lowestNote 
+        << " to "                       << highestNote << "\n";
 }

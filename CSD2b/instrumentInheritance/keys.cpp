@@ -5,7 +5,10 @@ Keys::Keys(std::string name) : Instrument(name) {
     std::cout << "Keys - Constructor: "
         << name << "\n";
 
-    sound = "ding";
+    sound = "ploing";
+    type = "key";
+    lowestNote = "0";
+    highestNote = "127";
 }
 
 Keys::~Keys() {

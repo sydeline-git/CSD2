@@ -6,6 +6,9 @@ Strings::Strings(std::string name) : Instrument(name) {
         << name << "\n";
 
     sound = "boing";
+    type = "string";
+    lowestNote = "48";
+    highestNote = "84";
 }
 
 Strings::~Strings() {

@@ -16,6 +16,12 @@ public:
 protected:
     std::string name;
     std::string sound;
+
+    std::string type;
+
+    std::string lowestNote;
+    std::string highestNote;
+    
 };
 
 #endif
