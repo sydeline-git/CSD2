@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\simple_inheritance\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\simple_inheritance\dog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\simple_inheritance\cat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\simple_inheritance\pet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\simple_inheritance\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8609B204-7719-3811-989D-5830C2A1F8EF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

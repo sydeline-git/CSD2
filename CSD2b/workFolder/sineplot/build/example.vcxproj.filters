@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\sineplot\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\sineplot\sine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\sineplot\writeToFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\strav\Documents\CSD2\CSD2b\workFolder\sineplot\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3564F339-6A76-36D6-B441-FC92FE8B0013}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
