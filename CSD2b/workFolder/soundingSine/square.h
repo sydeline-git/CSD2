@@ -3,13 +3,13 @@
 #include <iostream>
 #include <cmath>
 
-class Saw {
+class Square {
 
 public:
-    Saw(float frequency, float samplerate = 44100);
-    ~Saw();
+    Square(float frequency, float samplerate = 44100);
+    ~Square();
 
-    void setSampleRate(float samplerate);
+    void setSamplerate(float samplerate);
 
     //return current sample from private sawclass
     float getSample();

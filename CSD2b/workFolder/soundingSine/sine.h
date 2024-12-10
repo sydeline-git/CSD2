@@ -1,5 +1,5 @@
-#ifndef _SINE_H_
-#define _SINE_H_
+#pragma once //only include if not included yet
+
 #include <iostream>
 #include <cmath>
 
@@ -29,4 +29,3 @@ private:
   float samplerate;
 };
 
-#endif
