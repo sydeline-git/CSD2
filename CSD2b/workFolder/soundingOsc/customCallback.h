@@ -3,6 +3,7 @@
 #include "sine.h"
 #include "saw.h"
 #include "square.h"
+#include "triangle.h"
 #include "osc.h"
 
 struct CustomCallback : AudioCallback {
@@ -25,8 +26,8 @@ struct CustomCallback : AudioCallback {
             for (int sample = 0u; sample < numFrames; ++sample) {
                 outputChannels[channel][sample] = 0.0f;
                 // write sample to buffer at channel 0, amp = 0.25
-                outputChannels[channel][sample] = sine.getSample();
-                sine.tick();
+                outputChannels[channel][sample] = hi.getSample();
+                hi.tick();
             }
         }
     }
@@ -34,8 +35,5 @@ struct CustomCallback : AudioCallback {
 private:
 //   Sine sine{220};
 //   Saw saw{440};
-    Sine sine{220};
-    Sine sine2{440};
-    Sine sine3{880};
-    Sine sine4{1760};
+    Triangle hi{220};
 };

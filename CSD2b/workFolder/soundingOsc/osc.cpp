@@ -39,3 +39,6 @@ float Osc::getFrequency()
 {
     return frequency;
 }
+
+
+

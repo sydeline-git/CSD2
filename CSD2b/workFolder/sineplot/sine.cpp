@@ -24,6 +24,24 @@ void Sine::tick() {
   // • frequency / SAMPLERATE can be implemented in a more efficient way
   phase += frequency / SAMPLERATE;
   sample = sin(M_PI * 2 * phase);
+  // float quadruplePhase = phase*4;
+
+  // if (phase <= 0.25) 
+  // {
+  //   sample = (quadruplePhase * 1.0f); //   /
+  // } 
+
+  // else if ((phase > 0.25) && (phase <= 0.75)) //   
+  // {
+  //   sample = (quadruplePhase * -1.0f + 2);
+  // }
+
+  // else if ((phase > 0.75) && (phase <= 1)) 
+  // {
+  //   sample = (quadruplePhase * 1.0f -  4);
+  // }
+  
+
 }
 
 //getters and setters
