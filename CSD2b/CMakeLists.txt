@@ -1,2 +1,3 @@
 add_subdirectory(JuceTest)
 add_subdirectory(workFolder)
+add_subdirectory(synthSong)
