@@ -4,11 +4,11 @@
 Osc::Osc(float frequency, float samplerate) : frequency(frequency),
     amplitude(1.0), phase(0), sample(0), samplerate(samplerate)
 {
-    std::cout << "Osc - constructor\n";
+    std::cout << "Osc - Constructor\n";
 }
 
 Osc::~Osc() {
-    std::cout << "Osc - destructor\n";
+    std::cout << "Osc - Deconstructor\n";
 }
 
 void Osc::setSamplerate(float samplerate) {
